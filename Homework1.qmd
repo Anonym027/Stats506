@@ -1,0 +1,417 @@
+---
+title: "Homework1"
+format: html
+editor: visual
+author: Haina Qian
+---
+
+## Problem 1
+
+## (a)
+
+Firstly, import the data from "wine.data" and use the information from "wine.names".
+
+```{r}
+# Import the dataset and assign it to a dataframe
+data <- read.table('D:/Umich_MAS/semester1/STATS_506/R_work/20240912_hainaq/wine/wine.data', sep = ',')
+
+# Use the information from "wine.names" to name the columns
+colnames(data) <- c('class', 'Alcohol', 'Malic_acid', 'Ash', 
+              'Alcalinity_of_ash', 'Magnesium', 'Total_phenols', 'Flavanoids',
+              'Nonflavanoid_phenols', 'Proanthocyanins', 'Color_intensity', 'Hue', 
+              'OD280/OD315_of_diluted_wines', 'Proline')
+
+```
+
+## (b)
+
+Then, check and report that the number of wines within each class is correct as reported in "wine.names".
+
+```{r}
+# Compare the actual counts of each class with the information provided in "wine.names"
+actual_class_counts <- table(data$class)
+expected_class_counts <- c(59, 71, 48)
+is_equal <- all(actual_class_counts == expected_class_counts)
+
+# Show the answer according to "is_equal", if it is True, then the data is correct
+if (is_equal) {
+  cat("the number of wines within each class is correct as reported in \"wine.names\".\n")
+} else {
+  cat("the number of wines within each class is not correct as reported in \"wine.names\".\n")
+}
+```
+
+## (c-1)
+
+To measure the correlation between alcohol content and color intensity, we use the Pearson correlation coefficient.
+
+```{r}
+# Calculate the Pearson correlation coefficient to find the correlation
+correlation <- cor(data$Alcohol, data$Color_intensity)
+
+# Show the output
+cat("Correlation between Alcohol and Color intensity: ", correlation, "\n")
+
+```
+
+The output shows that Alcohol and Color Intensity have a moderate positive linear correlation, indicating that one tends to increase accompanied by an increase in the other.
+
+## (c-2)
+
+```{r}
+# Separately consider data of each class
+data_class1 <- subset(data, class == 1)
+data_class2 <- subset(data, class == 2)
+data_class3 <- subset(data, class == 3)
+
+# Remove the column of "class"
+features_class1 <- data_class1[, -1]
+features_class2 <- data_class2[, -1]
+features_class3 <- data_class3[, -1]
+
+# Separately calculate the correlation matrix
+cor_class1 <- cor(features_class1)
+cor_class2 <- cor(features_class2)
+cor_class3 <- cor(features_class3)
+
+# Calculate the absolute average value of the correlation for each class
+abs_mean_cor_class1 <- mean(abs(cor_class1[upper.tri(cor_class1)]))
+abs_mean_cor_class2 <- mean(abs(cor_class2[upper.tri(cor_class2)]))
+abs_mean_cor_class3 <- mean(abs(cor_class3[upper.tri(cor_class3)]))
+
+# Name the absolute average value of the correlation with each class
+correlation_values <- c(abs_mean_cor_class1, abs_mean_cor_class2, abs_mean_cor_class3)
+names(correlation_values) <- c("Class 1", "Class 2", "Class 3")
+
+# Find the highest and lowest correlated classes and show them
+highest_correlation <- names(which.max(correlation_values))
+lowest_correlation <- names(which.min(correlation_values))
+cat("The class with the highest correlation: ", highest_correlation, "\n")
+cat("The class with the lowest correlation: ", lowest_correlation, "\n")
+```
+
+According to the output, the class 1 has the highest correlations, while the class 2 has the lowest correlation.
+
+## (c-3)
+
+```{r}
+# Find the value the maximum color intensity in the data
+max_color_intensity <- max(data$Color_intensity)
+
+# Find the alcohol of the row with the maximum color intensity in the data
+corresponding_alcohol <- data[data$Color_intensity == max_color_intensity, "Alcohol"]
+
+# Show the output
+cat("The alcohol content of the wine with the highest color intensity is : ", corresponding_alcohol, "\n")
+
+```
+
+## (c-4)
+
+```{r}
+# Select all rows that satisfy the content of proanthocyanins is higher than ash
+selected_rows <- data[data$Proanthocyanins > data$Ash, ]
+
+# Calculate the number of selected rows and all rows, and then the percentage
+number_of_selected_rows <- nrow(selected_rows)
+number_of_total_rows <- nrow(data)
+percentage <- number_of_selected_rows/number_of_total_rows
+
+# Show the output
+cat("The percentage of wines had a higher content of proanthocyanins compare to ash is: ", percentage, "\n")
+```
+
+Thus, the percentage of wines had a higher content of proanthocyanins compare to ash is about 8.43%.
+
+## (d)
+
+```{r}
+# Calculate the overall mean of each column except the "class"
+mean_overall <- sapply(data[ ,-1], mean)
+
+# Calculate the mean of each column in each class.
+mean_class1 <- sapply(features_class1, mean)
+mean_class2 <- sapply(features_class2, mean)
+mean_class3 <- sapply(features_class3, mean)
+
+# Connect these rows
+table_of_means <- rbind(mean_overall, mean_class1, mean_class2, mean_class3)
+
+# Show the output
+table_of_means
+```
+
+## (e)
+
+```{r}
+# Take the column of total phenols of each class
+phenols_class1 <- data_class1$Total_phenols
+phenols_class2 <- data_class2$Total_phenols
+phenols_class3 <- data_class3$Total_phenols
+
+# Perform t test on each pair
+t_test_class12 <- t.test(phenols_class1, phenols_class2)
+t_test_class13 <- t.test(phenols_class1, phenols_class3)
+t_test_class23 <- t.test(phenols_class2, phenols_class3)
+
+# Show the output of these t tests
+print(t_test_class12)
+print(t_test_class13)
+print(t_test_class23)
+
+```
+
+The results show that in the pairwise t test between classes 1, 2, and 3, the p value is much less than the significance level 0.05, which indicates that the phenol levels of the three are significantly different.
+
+# Problem 2
+
+## (a)
+
+```{r}
+# Import the csv 
+data_askamanager <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20240912_hainaq/AskAManager.csv")
+
+
+```
+
+## (b)
+
+```{r}
+# Check the current variable names
+names(data_askamanager)
+
+# Adjust the variable names
+names(data_askamanager) <- c("X", "Timestamp", "Age", "Industry", "Job_title", "Addition_context_of_job", "Annual_salary", "Additional_monetary_compensation", "Currency", "Other_currency", "Additional_context_of_income", "Country", "State_in_US", "City", "Years_of_experience_total", "Years_of_experience_in_their_field", "Highest_level_of_education", "Gender", "Race")
+
+
+```
+
+## (c)
+
+```{r}
+# Select the rows with the USD currency 
+USD_rows <- data_askamanager[data_askamanager$Currency == "USD", ]
+
+# Calculate the number of USD_rows and the whole data
+counts_USD_rows <- nrow(USD_rows)
+counts_all_rows <- nrow(data_askamanager)
+
+# Show the counts
+cat("The count before restricting the data is:", counts_all_rows, "\n")
+cat("The count after restricting the data is", counts_USD_rows, "\n")
+
+# Compare these two counts to measure whether the method works
+if (counts_USD_rows == counts_all_rows){
+  cat("The method does not work.\n")
+}else{
+  cat("The method does work.\n")
+}
+
+```
+
+## (d)
+
+```{r}
+# Delete those whose age is under 18 and with no number in three kinds of year data
+data_askamanager <- data_askamanager[!grepl("under", data_askamanager$Age), ]
+data_askamanager <- data_askamanager[grepl("\\d", data_askamanager$Age), ]
+data_askamanager <- data_askamanager[grepl("\\d", data_askamanager$Years_of_experience_total), ]
+data_askamanager <- data_askamanager[grepl("\\d", data_askamanager$Years_of_experience_in_their_field), ]
+
+# Deal with the form of the age, be as "a-b"
+data_askamanager$Age <- gsub("65 or over", "65-100", data_askamanager$Age)
+data_askamanager$Age <- gsub(" ", "", data_askamanager$Age)
+
+# Deal with the form of years of experience in their field, be as "a-b"
+data_askamanager$Years_of_experience_in_their_field[grepl("less",data_askamanager$Years_of_experience_in_their_field)] <- "0-1"
+data_askamanager$Years_of_experience_in_their_field[grepl("more", data_askamanager$Years_of_experience_in_their_field)] <- "41-100"
+data_askamanager$Years_of_experience_in_their_field <- gsub("years", "", data_askamanager$Years_of_experience_in_their_field)
+data_askamanager$Years_of_experience_in_their_field <- gsub(" ", "", data_askamanager$Years_of_experience_in_their_field)
+
+# Deal with the form of years of experience total, be as "a-b"
+data_askamanager$Years_of_experience_total[grepl("less", data_askamanager$Years_of_experience_total)] <- "0-1"
+data_askamanager$Years_of_experience_total[grepl("more", data_askamanager$Years_of_experience_total)] <- "41-100"
+data_askamanager$Years_of_experience_total <- gsub("years", "", data_askamanager$Years_of_experience_total)
+data_askamanager$Years_of_experience_total <- gsub(" ", "", data_askamanager$Years_of_experience_total)
+
+# Split the string to get the number in detail of age data
+age_list <- strsplit(data_askamanager$Age, "-")
+y1 <- as.numeric(sapply(age_list, "[", 1))
+y2 <- as.numeric(sapply(age_list, "[", 2))
+
+# Split the string to get the number in detail of years of experience in their field
+year_in_the_field_list <- strsplit(data_askamanager$Years_of_experience_in_their_field, "-")
+a1 <- as.numeric(sapply(year_in_the_field_list, "[", 1))
+a2 <- as.numeric(sapply(year_in_the_field_list, "[", 2))
+
+
+# Split the string to get the number in detail of years of expericence total
+year_total_list <- strsplit(data_askamanager$Years_of_experience_total, "-")
+b1 <- as.numeric(sapply(year_total_list, '[', 1))
+b2 <- as.numeric(sapply(year_total_list, '[', 2))
+
+# Delete all conditions that may cause contradiction between these three kinds of year-data
+condition1 <- (b1 > y2 - 18)
+condition2 <- (b2 < a1)
+data_askamanager_clear <- data_askamanager[!condition1, ]
+data_askamanager_clear <- data_askamanager_clear[!condition2, ]
+
+# Calculate and show the counts of before and after
+counts_data_askamanager_clear <- nrow(data_askamanager_clear)
+counts_data_askamanager <- counts_all_rows
+cat("The counts of initial data is:", counts_data_askamanager, "\n")
+cat("The counts of processed data is:", counts_data_askamanager_clear, "\n")
+
+
+```
+
+## (e)
+
+Firstly, we know that there is an annual earning number for a full-time minimum wage worker. According to the research conducted by the Center for Poverty and Inequality Research in the University of California, Davis, the annual earnings for a full-time minimum-wage worker is \$15,080 at the current federal minimum wage of \$7.25(https://poverty.ucdavis.edu/faq/what-are-annual-earnings-full-time-minimum-wage-worker). Thus, the low bound needs to be updated.
+
+```{r}
+# Update the low bound with the information mentioned above 
+low_bound <- 15080
+
+```
+
+Then we can use IQR to find the outliers.
+
+```{r}
+# Calculate the Q1, Q3 and IQR of annual salary
+Q1 <- quantile(data_askamanager_clear$Annual_salary, 0.25, na.rm = T)
+Q3 <- quantile(data_askamanager_clear$Annual_salary, 0.75, na.rm = T)
+IQR <- Q3 - Q1
+
+# Calculate the bound of each side
+low_bound_sd <- Q1 - 1.5 * IQR
+high_bound_sd <- Q3 + 1.5 * IQR
+
+# Update the high bound
+high_bound <- high_bound_sd
+
+# Show the bound we get according to the method of IQR
+cat("With the mean and standard error, the low bound is: ", low_bound, ".\n")
+cat("With the mean and standard error, the high bound is: ", high_bound, ".\n")
+
+# Pick out the salary that are in reasonable bounds.
+data_askamanager_clear_selected_salary <- data_askamanager[(low_bound < data_askamanager_clear$Annual_salary) & (data_askamanager_clear$Annual_salary < high_bound), ]
+
+
+# Calculate the counts of these selected salary.
+counts_selected_salary <- nrow(data_askamanager_clear_selected_salary)
+cat("The counts of selected salary is: ", counts_selected_salary, ".\n")
+
+```
+
+# Problem 3
+
+## (a)
+
+```{r}
+#' THis is a function to check if a number is palindromic.
+#'
+#' @Param A positive integer
+#' 
+#' @returns A list with two elements:
+#' \item{isPalindromic: A logical value indicating if the input is palindromic.}
+#' \irem{reversed: The input with its digits reversed.}
+#' 
+#' @examples
+#' isPalindromic(12321)
+#' isPalindromic(23432)
+#' 
+#' @export
+isPalindromic <- function(num){
+  # Make sure that the input is an positive integer
+  if (!(is.numeric(num)) || (num != as.integer(num)) || (num <= 0)){
+    stop("Input must be an integer.")
+  }
+  
+  # Convert the number to string
+  string_num <- as.character(num)
+  
+  # Separate the string as string vector
+  split_string_num <- strsplit(string_num, NULL)[[1]]
+  
+  # Reverse the string vector
+  reversed_split_string_num <- rev(split_string_num)
+  
+  # Paste the vector as string
+  reversed_pasted_string_num <- paste(reversed_split_string_num, collapse = "")
+  
+  # Convert reversed string back to number
+  reversed_num <- as.numeric(reversed_pasted_string_num)
+  
+  # Check the isPalindromic
+  is_palindromic <- (num == reversed_num)
+  
+  # Return the results
+  return(list(isPalindromic = is_palindromic, reversed = reversed_num))
+  }
+
+```
+
+By the way, on consideration of the number that ends with 0, we know that the output of isPalindromic should be false and reversed should not begin with 0. It is easy to know that the function satisfies with this command.
+
+## (b)
+
+```{r}
+#'
+#' This is a function that finds the next palindromic number strictly greater than the input.
+#' 
+#' @param num A positive integer
+#' 
+#' @return A vector of length 1 with the next palindromic number greater than the input
+#' 
+#' @examples
+#' nextPalindrome(7152) # returns 7227
+#' nextPalindrome(765431537) # returns 765434567
+#' 
+#' @export
+nextPalindrome <- function(num){
+  # Make sure that the input is an positive integer
+  if (!(is.numeric(num)) || (num != as.integer(num)) || (num <= 0)){
+    stop("Input must be an integer.")
+  }
+  
+  # Iterate over integers greater than num to find the first palindrome
+  next_num <- num + 1
+  while (!isPalindromic(next_num)$isPalindromic){
+    next_num <- next_num + 1
+  }
+  return(next_num)
+}
+
+```
+
+## (c)
+
+```{r}
+# Input: 391
+input <- 391
+output <- nextPalindrome(input)
+cat("The next palindrome after", input, "is", output, ".\n" )
+
+# Input: 9928
+input <- 9928
+output <- nextPalindrome(input)
+cat("The next palindrome after", input, "is", output, ".\n" )
+
+# Input: 19272719
+input <- 19272719
+output <- nextPalindrome(input)
+cat("The next palindrome after", input, "is", output, ".\n" )
+
+# Input: 109
+input <- 109
+output <- nextPalindrome(input)
+cat("The next palindrome after", input, "is", output, ".\n" )
+
+# Input: 2
+input <- 2
+output <- nextPalindrome(input)
+cat("The next palindrome after", input, "is", output, ".\n" )
+```
+
+## 
