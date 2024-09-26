@@ -1,0 +1,529 @@
+---
+title: "Homework2"
+author: "Haina Qian"
+format: html
+editor: visual
+---
+
+# Problem1
+
+## (a)
+
+In order to better achieve the requirement of (c), I design a simple function to control the randomization.
+
+```{r}
+#' This is a pre-function for all four versions of play_dice function which roll the dice once.
+#' 
+#' 
+#' @param num The number of dice to roll
+#' 
+#' @return  A vector of the rolls
+#' 
+#' @example 
+#' roll_the_dice(1)
+#' 
+#' @export
+roll_the_dice <- function(num){
+  rolls <- sample(1:6, num, replace = T)
+  return(rolls)
+}
+```
+
+### Version1
+
+```{r}
+#' This is a function to play a dice game with bonus of version1.
+#'
+#' @description
+#' It costs $2 to play. You roll a single 6-sided die. On a roll of 3 or 5, you win twice your roll. On any other roll, you lose.
+#'
+#' @param num The number of dice to roll
+#' 
+#' @return Total winnings
+#' 
+#' @example
+#' play_dice(10)
+#' 
+#' @export
+play_dice_version1 <- function(num){
+  # Initialize total_winings.
+  total_winnings <- 0
+  
+  # Roll the dice by the pre-function.
+  rolls <- roll_the_dice(num)
+  
+  # Build a loop for num times rolls.
+  for (roll in rolls){
+    if (roll == 3 || roll == 5){
+      total_winnings <- total_winnings + 2 * roll - 2
+      }else{
+        total_winnings <- total_winnings - 2
+      }
+  }
+  
+  # Return the output.
+  return(total_winnings)
+}
+
+```
+
+### Version2
+
+```{r}
+#' This is a function to play a dice game with bonus of version2.
+#'
+#' @description
+#' It costs $2 to play. You roll a single 6-sided die. On a roll of 3 or 5, you win twice your roll. On any other roll, you lose.
+#'
+#' @param num The number of dice to roll
+#' 
+#' @return Total winnings
+#' 
+#' @example
+#' play_dice(10)
+#' 
+#' @export
+play_dice_version2 <- function(num){
+  # Roll the dice by the pre-function.
+  rolls <- roll_the_dice(num)
+  
+  # Calculare the winnings of each roll.
+  winnings <- ifelse(rolls == 3 | rolls == 5, 2 * rolls - 2, -2)
+  
+  # Add each item of the vector to get the total winnings.
+  total_winnings <- sum(winnings)
+  
+  # Return the output.
+  return(total_winnings)
+}
+
+```
+
+### Version3
+
+```{r}
+#' This is a function to play a dice game with bonus of version3.
+#'
+#' @description
+#' It costs $2 to play. You roll a single 6-sided die. On a roll of 3 or 5, you win twice your roll. On any other roll, you lose.
+#'
+#' @param num The number of dice to roll
+#' 
+#' @return Total winnings
+#' 
+#' @example
+#' play_dice(10)
+#' 
+#' @export
+play_dice_version3 <- function(num){
+  # Roll the dice by the pre-function.
+  rolls <- roll_the_dice(num)
+  
+  # Build a table with six factors of 1-6.
+  rolls_table <- table(factor(rolls, levels = 1:6))
+  
+  # Calculate the total winnings.
+  total_winnings <- rolls_table["3"] * (6 - 2) + rolls_table["5"] * (10 - 2) -  (rolls_table["1"] + rolls_table["2"] + rolls_table["4"] + rolls_table["6"]) * 2
+  
+  # Return the output.
+  return(total_winnings)
+}
+```
+
+### Version4
+
+```{r}
+#' This is a function to play a dice game with bonus of version4.
+#'
+#' @description
+#' It costs $2 to play. You roll a single 6-sided die. On a roll of 3 or 5, you win twice your roll. On any other roll, you lose.
+#'
+#' @param num The number of dice to roll
+#' 
+#' @return Total winnings
+#' 
+#' @example
+#' play_dice(10)
+#' 
+#' @export
+play_dice_version4 <- function(num){
+  # Roll the dice by the pre-function.
+  rolls <-  roll_the_dice(num)
+  
+  # Use sapply to calculate the total winnings.
+  winnings <- sapply(rolls, function(roll){
+    if (roll == 3 || roll == 5){
+    return(roll * 2 - 2)}
+      else{return(-2)
+        }
+    }
+  )
+  
+  # Add each item of the vector to get the total winnings.
+  total_winnings <- sum(winnings)
+  
+  # Return the output.
+  return(total_winnings)
+}
+
+
+```
+
+## (b)
+
+With the input of 3, the outputs of four versions are:
+
+```{r}
+# Assigning a value to the input and the times.
+times <- 10
+num <- 3
+
+# Use the function of different versions to get the output vector.
+output1_3 <- sapply(1 : times, function(x) play_dice_version1(num))
+output2_3 <- sapply(1 : times, function(x) play_dice_version2(num))
+output3_3 <- sapply(1 : times, function(x) play_dice_version3(num))
+output4_3 <- sapply(1 : times, function(x) play_dice_version4(num))
+
+# Print the outputs of different versions.
+cat("The ouputs of the dice game of version 1 are: ", output1_3, "\n")
+cat("The ouputs of the dice game of version 2 are: ", output2_3, "\n")
+cat("The ouputs of the dice game of version 3 are: ", output3_3, "\n")
+cat("The ouputs of the dice game of version 4 are: ", output4_3, "\n")
+
+```
+
+With the input of 3000, the outputs of four versions are:
+
+```{r}
+# Assigning a value to the input and the times.
+times <- 10
+num <- 3000
+
+# Use the function of different versions to get the output vector.
+output1_3000 <- sapply(1 : times, function(x) play_dice_version1(num))
+output2_3000 <- sapply(1 : times, function(x) play_dice_version2(num))
+output3_3000 <- sapply(1 : times, function(x) play_dice_version3(num))
+output4_3000 <- sapply(1 : times, function(x) play_dice_version4(num))
+
+# Print the outputs of different versions.
+cat("The ouputs of the dice game of version 1 are: ", output1_3000, "\n")
+cat("The ouputs of the dice game of version 2 are: ", output2_3000, "\n")
+cat("The ouputs of the dice game of version 3 are: ", output3_3000, "\n")
+cat("The ouputs of the dice game of version 4 are: ", output4_3000, "\n")
+```
+
+## (c)
+
+```{r}
+# Assigning a value to the input and the times.
+times <- 10
+num <- 3
+
+# Redifine the pre-function to control the randomization.
+roll_the_dice <- function(num){
+  set.seed(123)
+  rolls <- sample(1:6, num, replace = T)
+  return(rolls)
+}
+
+# Use the function of different versions to get the output of each.
+output1_3 <- play_dice_version1(num)
+output2_3 <- play_dice_version2(num)
+output3_3 <- play_dice_version3(num)
+output4_3 <- play_dice_version4(num)
+
+# Print the outputs of different versions.
+cat("The ouput of the dice game of version 1 is: ", output1_3, "\n")
+cat("The ouput of the dice game of version 2 is: ", output2_3, "\n")
+cat("The ouput of the dice game of version 3 is: ", output3_3, "\n")
+cat("The ouput of the dice game of version 4 is: ", output4_3, "\n")
+
+```
+
+```{r}
+# Assigning a value to the input and the times.
+times <- 10
+num <- 3000
+
+# Redifine the pre-function to control the randomization.
+roll_the_dice <- function(num){
+  set.seed(123)
+  rolls <- sample(1:6, num, replace = T)
+  return(rolls)
+}
+
+
+# Use the function of different versions to get the output of each.
+output1_3000 <- play_dice_version1(num)
+output2_3000 <- play_dice_version2(num)
+output3_3000 <- play_dice_version3(num)
+output4_3000 <- play_dice_version4(num)
+
+# Print the outputs of different versions.
+cat("The ouput of the dice game of version 1 is: ", output1_3000, "\n")
+cat("The ouput of the dice game of version 2 is: ", output2_3000, "\n")
+cat("The ouput of the dice game of version 3 is: ", output3_3000, "\n")
+cat("The ouput of the dice game of version 4 is: ", output4_3000, "\n")
+
+
+```
+
+Clearly, it can be demonstrated that the four versions give the same result when input is 3 or 3000.
+
+### (d)
+
+```{r}
+# Library the package named microbenchmark.
+library(microbenchmark)
+```
+
+```{r}
+# Control the randomization.
+set.seed(123)
+
+# Show the performances with a low input of 1000.
+results_of_low_input <- microbenchmark(
+  play_dice_version1(1000),
+  play_dice_version2(1000),
+  play_dice_version3(1000),
+  play_dice_version4(1000),
+  times = 1000
+)
+print("The performance with a low input is: ")
+print(results_of_low_input)
+
+# Show the performances with a high input of 100000.
+results_of_high_input <- microbenchmark(
+  play_dice_version1(100000),
+  play_dice_version2(100000),
+  play_dice_version3(100000),
+  play_dice_version4(100000),
+  times = 1000
+)
+print("The performance with a high input is: ")
+print(results_of_high_input)
+```
+
+Firstly, we compare the performance among four different versions of dice playing function with a low input of 1000. The output time unit is microseconds. And the output shows that the second version is the fastest, then the first version, then the third version, and then the fourth version. Besides, the output time unit is milliseconds with a high input of 100000. Sometimes the speed sequence changes, however, the second version is always the fastest while the fourth version is always the slowest.
+
+Moreover, compare the performances between the low input and the high input, clearly, the time cost of each version increases. For version1, 2, 4, the latter takes about 100 times as long as the former, which is approximately the same multiple of the difference between the two inputs. Meanwhile, for version3, the speed of high input situation is much faster than the 100 multiple of the speed of low input situation. This shows that the performance of the four versions of the function remains stable or even faster(just for version3) when the input magnitude increases from small to large.
+
+For each version with high or low input, the difference between the median and the mean is small, and the interpolation between the upper and lower quantiles is also small, indicating that the performance is relatively stable.
+
+## (e)
+
+```{r}
+#' This is a function to evaluate the profit of dice-playing game function.
+#'
+#' @description
+#' Run multiple experiments and average the total winnings,then print the output that show the property of the game.
+#' 
+#' @param num The number of dice to roll
+#' @param times The times of experiments
+#' @param func The function used among four versions
+#' 
+#' @example 
+#' monte_carlo_stimulation(100, play_dice_version1)
+#' 
+#' @export
+monte_carlo_stimulation <- function(num, times, func){
+  # Initialize the profit.
+  total_profit <- 0
+  
+  # Calculate the total profit of all the times.
+  for (time in 1 : times){
+    total_profit <- total_profit + func(num)
+  }
+  
+  # Calculate the average profit.
+  average_profit <- total_profit / times
+  
+  # Determine whether it is a fair game.
+  if (average_profit > 0){
+    cat("The game is profitable to players.\n")
+  }else if (average_profit == 0){
+    cat("The game is fair to players.\n")
+  }else{
+    cat("The game is unprofitable to players.\n")
+  }
+}
+
+# Redifine the pre-function to keep the randomization.
+roll_the_dice <- function(num){
+  rolls <- sample(1:6, num, replace = T)
+  return(rolls)
+}
+
+# Show whether the game is fair through functions of four different versions.
+monte_carlo_stimulation(3, 10000, play_dice_version1)
+monte_carlo_stimulation(3, 10000, play_dice_version2)
+monte_carlo_stimulation(3, 10000, play_dice_version3)
+monte_carlo_stimulation(3, 10000, play_dice_version4)
+
+```
+
+# Problem2
+
+## (a)
+
+```{r}
+# Import the csv. 
+ cars <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20240926_hainaq/cars.csv")
+ 
+# Check the current variable names.
+names(cars)
+
+# Adjust the variable names.
+names(cars) <- c("height", "length", "width", "driveline", "engine_type", "hybrid", "number_of_forward_gears", "transmission", "city_mpg", "fuel_type", "highway_mpg", "classification", "ID", "make", "model_year", "year", "engine_statistics_horsepower", "engine_statistics_torque")
+
+
+```
+
+## (b)
+
+```{r}
+# Restrict the data to cars whose Fuel Type is "Gasoline".
+cars_gasoline <- subset(cars,fuel_type == "Gasoline")
+
+# Examine the head of the new dataframe.
+print(head(cars_gasoline))
+```
+
+## (c)
+
+```{r}
+# Examine the distibution of the highway_mpg.
+shapiro_test_result <- shapiro.test(cars_gasoline$highway_mpg)
+p_value <- shapiro_test_result$p.value
+cat("p value:", p_value, "\n")
+
+# Test the significance level.
+if (p_value > 0.05){
+  cat("The data may follow a normal distribution.\n")
+}else{
+  cat("The data cannot be a normal distribution.")
+}
+
+```
+
+```{r}
+# Perform log transformation.
+log_highway_mpg <- log(cars_gasoline$highway_mpg)
+shapiro_test_result <- shapiro.test(log_highway_mpg)
+p_value <- shapiro_test_result$p.value
+cat("p value:", p_value, "\n")
+
+# Test the significance level.
+if (p_value > 0.05){
+  cat("The data may follow a normal distribution.\n")
+}else{
+  cat("The data cannot be a normal distribution.")
+}
+```
+
+```{r}
+# Perform sqrt transformation.
+log_highway_mpg <- sqrt(cars_gasoline$highway_mpg)
+shapiro_test_result <- shapiro.test(log_highway_mpg)
+p_value <- shapiro_test_result$p.value
+cat("p value:", p_value, "\n")
+
+# Test the significance level.
+if (p_value > 0.05){
+  cat("The data may follow a normal distribution.\n")
+}else{
+  cat("The data cannot be a normal distribution.")
+}
+```
+
+Since neither the logarithmic transformation nor the square root transformation can make it a normal distribution, it is better not to use the transformation and then conduct further analysis on the original data.
+
+## (d)
+
+```{r}
+# Convert the year into a kind of factor.
+cars_gasoline$year <- as.factor(cars_gasoline$year)
+
+# Create the linear model.
+model <- lm(highway_mpg ~
+              engine_statistics_torque + engine_statistics_horsepower + 
+              height + length + width + year, 
+            data = cars_gasoline)
+
+summary(model)
+```
+
+According to the summary of the output of the linear model, we can see that with an estimate of -0.0507425 with a p value far more smaller than 0.05.
+
+The small p-value of torque means that the effect of torque on highway gas mileage is statistically significant.
+
+Also, it indicates that by controlling other variables such as horsepower, vehicle dimensions and year, each unit increase in torque reduces highway gas mileage by around 0.0507425 MPG.
+
+## (e)
+
+```{r}
+# Library the relevant package.
+library(interactions)
+library(ggplot2)
+```
+
+```{r}
+# Convert the year back to a numeric.
+cars_gasoline$year <- as.numeric(as.character(cars_gasoline$year))
+
+# Create the linear model with the interaction.
+interaction_model <- lm(highway_mpg ~
+              engine_statistics_torque * engine_statistics_horsepower + 
+              height + length + width + year, 
+            data = cars_gasoline)
+
+# Choose the suitable range of torque values.
+torque_values <- seq(min(cars_gasoline$engine_statistics_torque), max(cars_gasoline$engine_statistics_torque), length.out = 100)
+
+# Choose three adequate values of horsepower by considering its mean and upper and lower quantiles.
+mean_horsepower <- mean(cars_gasoline$engine_statistics_horsepower)
+upper_quantile_horsepower <- quantile(cars_gasoline$engine_statistics_horsepower, 0.75)
+lower_quantile_horsepower <- quantile(cars_gasoline$engine_statistics_horsepower, 0.25)
+cat(mean_horsepower, upper_quantile_horsepower, lower_quantile_horsepower)
+horsepower_values <- c(185, 267, 317)
+
+# Choose an adequate year.
+selected_year <- 2012
+
+# Create the interaction plot.
+interact_plot(interaction_model, 
+              pred = engine_statistics_torque, 
+              pred.values = torque_values, 
+              modx = engine_statistics_horsepower, 
+              modx.values = horsepower_values, 
+              data = cars_gasoline, 
+              at = list(year = selected_year), 
+              x.label = "torque", 
+              y.label = "highway_mpg",
+              title = "Interation between torque and horsepower on highway MPG"
+              )
+```
+
+## (f)
+
+```{r}
+# Design the matrix that includes torque, horsepower, height, length, width and year.
+X <- model.matrix( ~ engine_statistics_torque + engine_statistics_horsepower + height + length + width + factor(year), data = cars_gasoline)
+
+# Design the depedent variable vector.
+y <- cars_gasoline$highway_mpg
+
+# Calculate the least square estimate.
+beta_manual <- solve(t(X) %*% X) %*% t(X) %*% y
+
+# Show the value of beta_manual.
+print(beta_manual)
+
+
+```
+
+Comparing with the answer of (d), the coefficient of torque in the beta calculated by matrix is the same as that in the output accomplished by linear model prior.
+
+# The GitHub Link
+
+The link of this homework is https://github.com/Anonym027/Stats506.
