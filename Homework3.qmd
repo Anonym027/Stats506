@@ -441,8 +441,8 @@ data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/
 # Check the data.
 #print(head(data_us500))
 
-# Remove any @ or . in email strings.
-email_cleaned <- gsub("[@.]","",data_us500$email)
+# Remove any @ and the part after that in email strings.
+email_cleaned <- gsub("@.*","",data_us500$email)
 #print(email_cleaned)
 
 # Extract those with at least one non alphabumeric character in bool.

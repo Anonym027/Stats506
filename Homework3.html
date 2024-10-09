@@ -744,8 +744,8 @@ X-squared = 69.683, df = 1, p-value &lt; 2.2e-16</code></pre>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the data.</span></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#print(head(data_us500))</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any @ or . in email strings.</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>email_cleaned <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[@.]"</span>,<span class="st">""</span>,data_us500<span class="sc">$</span>email)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any @ and the part after that in email strings.</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>email_cleaned <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"@.*"</span>,<span class="st">""</span>,data_us500<span class="sc">$</span>email)</span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print(email_cleaned)</span></span>
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract those with at least one non alphabumeric character in bool.</span></span>
@@ -759,7 +759,7 @@ X-squared = 69.683, df = 1, p-value &lt; 2.2e-16</code></pre>
 <span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Print the result.</span></span>
 <span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The proportion of email addresses with least one non alphanumeric character is"</span>, proportion_least_one_non_alphanumeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The proportion of email addresses with least one non alphanumeric character is 0.248"</code></pre>
+<pre><code>[1] "The proportion of email addresses with least one non alphanumeric character is 0.506"</code></pre>
 </div>
 </div>
 </section>
