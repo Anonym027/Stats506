@@ -1,0 +1,596 @@
+---
+title: "Homework3_506"
+author: "Haina Qian"
+format: html
+editor: visual
+---
+
+# Problem 1
+
+## (a)
+
+```{r}
+# Library the packages we need.
+library(haven)
+library(knitr)
+library(dplyr)
+
+# Import VIX_D.XPT and DEMO_D from a local path.
+data_vix <- read_xpt("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/VIX_D.XPT")
+data_demo <- read_xpt("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/DEMO_D.XPT")
+
+# Check the data.
+#print(head(data_vix))
+#print(head(data_demo))
+
+# Use SEQN to merge two dataset.
+merged_data <- inner_join(data_vix, data_demo, by = "SEQN")
+
+# Check the data.
+#print(head(merged_data))
+
+# Check if the number of row of the merged data is 6980.
+merged_data_nrow <- nrow(merged_data)
+cat("The total sample size is:",merged_data_nrow, "\n")
+```
+
+## (b)
+
+```{r}
+# Add a new colunm RIDAGERG to group RIDAGEYR.
+merged_data$RIDAGERG <- cut(merged_data$RIDAGEYR, breaks = seq(0,90,10), right = F,
+                            labels = paste(seq(0,80,10), seq(9,89,10), sep = "-"))
+# Check the data.
+#print(head(merged_data))
+
+# Group the data by age range and calculate the proportion of wearing glasses or
+# contact lenses for distance vision.
+gcd_proportion_merged_data <- merged_data %>%
+  # Group the data and execute the following code separately.
+  group_by(RIDAGERG) %>%
+  # Generalize a new dataframe to show the proportion of each group.
+  summarise(GCDPPT = round(mean(VIQ220 == 1, na.rm = T) ,2)) 
+
+# Produce a nice table with result! 
+kable(gcd_proportion_merged_data, align = "c",
+      caption = "The proportion of people wearing glasses/contact lenses for distance vision in each age group",
+      col.names = c("Age Range", "Proportion"))
+  
+```
+
+## (c)
+
+```{r}
+#' This is a function to get some information of a model such as the estimated odds ratio,the sample size, the pseudo-R^2 and AIC values.
+#'
+#'
+#' 
+#' @param model The GLM model we define.
+#' 
+#' @return
+#'   \item{tidy_model}{A dataframe that show the tidy result of the model which includes the estimated odds ratio.}
+#'   \item{summary_model}{A dataframe that includes the sample size, the pseudo-R^2 and AIC values after calculation.}
+#' 
+#' @import broom
+#' 
+#' @export
+get_info_model <- function(model){
+  # Tidy the model to get readable result of the estimated odds ratio.
+  tidy_model <- tidy(model, exponentiate = T)
+  
+  # Get the summary of the sample size, the pseudo-R^2 and AIC values.
+  summary_model <- data.frame(
+    sample_size = nobs(model), 
+    pseudo_R2 = round(1 - (model$deviance/model$null.deviance), 2),
+    AIC_model = round(AIC(model), 2)
+  )
+  
+  # Return the total output.
+  return(list(tidy_model = tidy_model, summary_model = summary_model))
+}
+
+
+# Library the package we need.
+library(broom)
+library(dplyr)
+
+# Remove the NA in VIQ220 and INDFMPIR.
+merged_data <- merged_data %>%
+  filter(!is.na(VIQ220) & !is.na(INDFMPIR))
+
+# Define three kinds of models.
+## Model with a predictor named age.
+model1 <- glm(VIQ220 == 1 ~ RIDAGEYR, data = merged_data,
+              family = binomial)
+## Model with three predictors named age, race and gender.
+model2 <- glm(VIQ220 == 1 ~ RIDAGEYR + RIDRETH1 + RIAGENDR,
+              data = merged_data, family = binomial)
+## Model with four predictors named age, race, gender and Poverty Income ratio.
+model3 <- glm(VIQ220 == 1 ~ RIDAGEYR + RIDRETH1 + RIAGENDR + INDFMPIR,
+              data = merged_data, family = binomial)
+
+# Use the function to get the result.
+info_model1 <- get_info_model(model1)
+info_model2 <- get_info_model(model2)
+info_model3 <- get_info_model(model3)
+tidy_model1 <- info_model1$tidy_model
+tidy_model2 <- info_model2$tidy_model
+tidy_model3 <- info_model3$tidy_model
+
+# Rbind the results of three kinds of models.
+summary_models <- rbind(info_model1$summary_model,
+                        info_model2$summary_model,
+                        info_model3$summary_model)
+
+# Combine the estimated odds ratio in tidy_model with the results in summary_model.
+summary_models <- summary_models %>%
+  mutate(model_name = c("model1", "model2", "model3")) %>%
+  relocate(model_name, .before = everything()) %>%
+  mutate(intercept_OR = c(tidy_model1$estimate[1],
+                          tidy_model2$estimate[1],
+                          tidy_model3$estimate[1])) %>%
+  mutate(RIDAGEYR_OR = c(tidy_model1$estimate[2],
+                         tidy_model2$estimate[2],
+                         tidy_model3$estimate[2])) %>%
+  mutate(RIDRETH1_OR = c(NA,
+                         tidy_model2$estimate[3],
+                         tidy_model3$estimate[3])) %>%
+  mutate(RIAGENDR_OR = c(NA,
+                         tidy_model2$estimate[4],
+                         tidy_model3$estimate[4])) %>%
+  mutate(INDFMPIR_OR = c(NA, NA, tidy_model3$estimate[5]))
+ 
+# Produce a nice table.
+kable(summary_models, align = "c", caption = "Table of results of each model")
+
+```
+
+## (d)
+
+```{r}
+# Define the model with four predictors named age, race, gender and Poverty Income ratio.
+model3 <- glm(VIQ220 == 1 ~ RIDAGEYR + RIDRETH1 + RIAGENDR + INDFMPIR,
+              data = merged_data, family = binomial)
+#summary(model3)
+
+# Get the odds ratio of gender from coefficients of the model3.
+odds_ratio <- exp(coef(model3)[4])
+
+# Print the result.
+print(paste("The odds ratio is:", round(odds_ratio, 2)))
+
+```
+
+The output shows that the odds of men and women being wears of glasess/contact lenses for distance vision differs.
+
+```{r}
+# Remove "VIQ220 == 9" since 2 rows don't matter.
+merged_data <- merged_data[merged_data$VIQ220 != 9, ]
+
+# Create a crosstab of VIQ220 and RIDAGENDR.
+wear_table <- table(merged_data$VIQ220, merged_data$RIAGENDR)
+#print(wear_table)
+
+# Conduct a chi-square test and print the result.
+chi_square_test <- chisq.test(wear_table)
+print(chi_square_test)
+
+```
+
+According to the output of the chi--square test we conduct, since the p value is far less than 0.05, it indicates that there is a significant difference in the proportion of men and women wearing glasses/contact lenses.
+
+# Problem 2
+
+## (a)
+
+```{r}
+# Library the package we need
+library(DBI)
+library(RSQLite)
+
+# Connect with Sakila. 
+sakila <- dbConnect(RSQLite::SQLite(), "D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/sakila-sqlite3-main/sakila_master.db")
+
+# Check the name of all tables.
+#dbListTables(sakila)
+ 
+# Define a function of query to simplify the process.
+gg <- function(query){
+  dbGetQuery(sakila, query)
+}
+
+
+# Search the earliest year of firms and the number of films in that year.
+gg("
+SELECT 
+    MIN(release_year) AS earliest_year, 
+    COUNT(*) AS number_of_films
+FROM 
+    film
+WHERE 
+    release_year = (SELECT MIN(release_year) FROM film);
+   ")
+
+# Disconnect with sakila.
+dbDisconnect(sakila)
+
+
+
+```
+
+## (b)
+
+### If we use SQL query.
+
+```{r}
+# Library the package we need
+library(DBI)
+library(RSQLite)
+
+# Connect with Sakila. 
+sakila <- dbConnect(RSQLite::SQLite(),
+                    "D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/sakila-sqlite3-main/sakila_master.db")
+
+# Check the name of all tables.
+#dbListTables(sakila)
+ 
+# Define a function of query to simplify the process.
+gg <- function(query){
+  dbGetQuery(sakila, query)
+}
+
+# Use SQL query to find the result.
+result_b1 <- 
+gg("
+SELECT
+    category.name AS category_name,
+    number_of_films
+FROM(
+    SELECT
+        film_category.category_id,
+        COUNT(film_category.film_id) AS number_of_films
+    FROM
+        film_category
+    GROUP BY
+        film_category.category_id
+    ORDER BY
+        number_of_films ASC
+    LIMIT 1
+    ) AS the_least_common_genre
+JOIN
+    category ON the_least_common_genre.category_id = category.category_id
+       ")
+
+# Print the conclusion drawn by the process above.
+print(paste("The genre named", result_b1$category_name, "is the least common in the data, and there are", result_b1$number_of_films, "movies of this genre."))
+
+# Disconnect with sakila.
+dbDisconnect(sakila)
+
+```
+
+### If we use queries to extract the appropriate tables and then use regular R operations on those dataframes to answer the question.
+
+```{r}
+# Library the package we need
+library(DBI)
+library(RSQLite)
+library(dplyr)
+
+# Connect with Sakila. 
+sakila <- dbConnect(RSQLite::SQLite(), "D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/sakila-sqlite3-main/sakila_master.db")
+
+# Get the dataframes from sakila.
+df_film_category <- dbGetQuery(sakila, "SELECT * FROM film_category")
+df_category <-dbGetQuery(sakila, "SELECT * FROM category")
+
+# Check the dataframes we get from sakila.
+#print(head(df_film_category))
+#print(head(df_category))
+
+
+# Find the category of movie that is the least common in the dataframe.
+result_b2 <- df_film_category %>%
+  group_by(category_id) %>%
+  summarise(number = n()) %>%
+  arrange(number) %>%
+  slice(1)
+
+# Check the output.
+#print(result_of_film_category)
+
+# Find the category name in the df_category.
+category_name <- df_category %>%
+  filter(category_id == result_b2$category_id)%>%
+  select(name)
+
+# Print the conclusion drawn by the process above.
+print(paste("The genre named", category_name, "is the least common in the data, and there are", result_b2$number, "movies of this genre."))
+
+# Disconnect with sakila.
+dbDisconnect(sakila)
+
+
+```
+
+## (c)
+
+If we use SQL query.
+
+```{r}
+# Library the package we need
+library(DBI)
+library(RSQLite)
+
+# Connect with Sakila. 
+sakila <- dbConnect(RSQLite::SQLite(),
+                    "D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/sakila-sqlite3-main/sakila_master.db")
+
+# Check the name of all tables.
+#dbListTables(sakila)
+ 
+# Define a function of query to simplify the process.
+gg <- function(query){
+  dbGetQuery(sakila, query)
+}
+
+# Use SQL query to find the result.
+result_c1 <-
+gg("
+SELECT
+   country.country,
+   COUNT(*) AS number_of_customers
+FROM
+   customer
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_id = country.country_id
+GROUP BY
+   country.country
+HAVING
+   COUNT(*) == 13
+   ")
+
+# Produce the result.
+kable(result_c1, format = "html",
+      caption = "Table c1",
+      col.names = c("Country", "Number of Customers"),
+      align = "c")
+
+# Disconnect with sakila.
+dbDisconnect(sakila)
+```
+
+### If we use queries to extract the appropriate tables and then use regular R operations on those dataframes to answer the question.
+
+```{r}
+# Library the package we need
+library(DBI)
+library(RSQLite)
+library(dplyr)
+library(knitr)
+
+# Connect with Sakila. 
+sakila <- dbConnect(RSQLite::SQLite(), "D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/sakila-sqlite3-main/sakila_master.db")
+
+# Get the dataframes from sakila.
+df_country <- dbGetQuery(sakila, "SELECT * FROM country")
+df_customer <-dbGetQuery(sakila, "SELECT * FROM customer")
+df_address <- dbGetQuery(sakila, "SELECT * FROM address" )
+df_city <- dbGetQuery(sakila, "SELECT * FROM city")
+
+# Check the dataframes we get from sakila.
+#print(head(df_country))
+#print(head(df_customer))
+#print(head(df_address))
+#print(head(df_city))
+
+# Merge dataframes by their id and filter the countries that have 13 customers.
+result_c2 <- df_customer %>%
+  inner_join(df_address, by = "address_id") %>%
+  inner_join(df_city, by = "city_id") %>%
+  inner_join(df_country, by = "country_id") %>%
+  group_by(country) %>%
+  summarise(counts_country_id = n()) %>%
+  filter(counts_country_id == 13)
+
+# Produce the result.
+kable(result_c2, format = "html",
+      caption = "Table c2",
+      col.names = c("country", "number of customers"),
+      align = "c")
+
+# Disconnect with sakila.
+dbDisconnect(sakila)
+```
+
+# 
+
+# Problem 3
+
+## (a)
+
+```{r}
+# Library the package we need.
+library(dplyr)
+
+# Import the data.
+data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/us-500.csv", stringsAsFactors = FALSE)
+
+# Check the data.
+#print(head(data_us500))
+
+# Use regular expressions to extract those email addresses with an end of ".com"
+proportion_com <- data_us500 %>%
+  summarise(proportion = mean(grepl("\\.com$", email), na.rm = T))
+
+# Print the result.
+print(paste('The proportion of email addresses that are hosted at a domain with TLD com is', proportion_com$proportion))
+
+```
+
+## (b)
+
+```{r}
+# Library the package we need.
+library(dplyr)
+
+# Import the data.
+data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/us-500.csv", stringsAsFactors = FALSE)
+
+# Check the data.
+#print(head(data_us500))
+
+# Remove any @ or . in email strings.
+email_cleaned <- gsub("[@.]","",data_us500$email)
+#print(email_cleaned)
+
+# Extract those with at least one non alphabumeric character in bool.
+email_least_one_non_alphanumeric <- grepl("[^a-zA-Z0-9]", email_cleaned)
+#print(email_least_one_non_alphanumeric)
+
+# Calculate the proportion.
+proportion_least_one_non_alphanumeric <- mean(email_least_one_non_alphanumeric,
+                                              na.rm = T) 
+
+#Print the result.
+print(paste("The proportion of email addresses with least one non alphanumeric character is", proportion_least_one_non_alphanumeric))
+
+```
+
+## (c)
+
+```{r}
+# Library the package we need.
+library(dplyr)
+
+# Import the data.
+data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/us-500.csv", stringsAsFactors = FALSE)
+
+# Check the data.
+#print(head(data_us500))
+
+# Extract the area number from phone1 and phone2.
+area_num1 <- substr(data_us500$phone1, 1, 3)
+area_num2 <- substr(data_us500$phone2, 1, 3)
+
+# Integrate those area numbers into one dataframe.
+area_num_total <- as.data.frame(c(area_num1, area_num2))
+colnames(area_num_total) = "area_number"
+
+# Find the top 5 most common area codes.
+result_top5 <- area_num_total %>%
+  group_by(area_number) %>%
+  summarise(count_each_area = n()) %>%
+  arrange(desc(count_each_area)) %>%
+  slice_head(n = 5)
+
+
+
+# Print the result.
+print(paste("The top 5 most common area codes amongst all phone numbers are", paste(result_top5$area_number, collapse = ",")))
+
+
+```
+
+## (d)
+
+```{r}
+# Library the package we need.
+library(dplyr)
+library(ggplot2)
+
+# Import the data.
+data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/us-500.csv", stringsAsFactors = FALSE)
+
+# Check the data.
+#print(data_us500$address)
+
+# Extract the appartment number.
+data_us500$apartment_number <- ifelse(grepl(".*[^0-9](\\d+)$", data_us500$address),
+                            sub(".*[^0-9](\\d+)$", "\\1", data_us500$address), NA)
+
+# Remove those rows with NA.
+data_us500 <- data_us500[!is.na(data_us500$apartment_number), ]
+
+# Log the appartment numbers.
+data_us500$apartment_number <- as.numeric(data_us500$apartment_number)
+data_us500$log_apartment_number <- log(data_us500$apartment_number)
+
+# Produce a histogram of the log of the apartment numbers for all addresses.
+ggplot(data_us500, aes(x = log_apartment_number)) +
+  geom_histogram(binwidth = 0.5, fill = "skyblue", color = "navy") +
+  labs(title = "Histogram of Log of Apartment Numbers", x = "Log of Apartment Number", y = "Frequency") +
+  theme(plot.title = element_text(hjust = 0.5)) 
+  
+```
+
+## (e)
+
+```{r}
+# Library the package we need.
+library(dplyr)
+library(ggplot2)
+
+# Import the data.
+data_us500 <- read.csv("D:/Umich_MAS/semester1/STATS_506/R_work/20241010_hainaq/us-500.csv", stringsAsFactors = FALSE)
+
+# Check the data.
+#print(data_us500$address)
+
+# Extract the appartment number.
+data_us500$apartment_number <- ifelse(grepl(".*[^0-9](\\d+)$", data_us500$address),
+                            sub(".*[^0-9](\\d+)$", "\\1", data_us500$address), NA)
+
+# Remove those rows with NA.
+data_us500 <- data_us500[!is.na(data_us500$apartment_number), ]
+
+# Extract the first number of the apartment number.
+data_us500$the_first_number <- substr(data_us500$apartment_number, 1, 1)
+
+# Group the first number and calculate the counts of each of them.
+result_Benford_laws_examine <- data_us500 %>%
+  group_by(the_first_number) %>%
+  summarise(counts_of_each_first_number = n()) 
+
+# Calculate the frequency of each number.
+result_Benford_laws_examine$frequency <- (result_Benford_laws_examine$counts_of_each_first_number/
+  sum(result_Benford_laws_examine$counts_of_each_first_number))
+
+
+#' This is a function to calculate the probability by Benford's laws.
+#' 
+#' @param number A number in 1-9.
+#' 
+#' @return 
+#'   \item{probability}{The probability calculated by Benford's laws.}
+#' 
+#' @export
+Benford_laws_examine <-function(number){
+  probability <- log10((number+1)/number)
+  return(probability)
+}
+
+# Get the vector of the probabilities of each number in 1-9.
+probability_vec <- sapply(1:9, Benford_laws_examine)
+
+# Produce a histogram of the frequency of each number.
+ggplot(result_Benford_laws_examine, aes(x = the_first_number, y = frequency)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "navy") +
+  labs(title = "Frequency of the first number", x = "number 0-9", y = "Frequency") +
+  # Centralize the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  # Add a line of the probability according to the Benford's laws.
+  geom_line(aes(x = 1:9, y = probability_vec), lwd = 1, color = "darkgreen", group = 1)
+
+
+
+  
+
+```
+
+Clearly, according the output, the apartment numbers is not as real data.
+
+# The Github Link
+
+The link of this homework is https://github.com/Anonym027/Stats506.
