@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Haina Qian">
+
+<title>Homework4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Homework4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Homework4_files/libs/quarto-html/quarto.js"></script>
+<script src="Homework4_files/libs/quarto-html/popper.min.js"></script>
+<script src="Homework4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Homework4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Homework4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Homework4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Homework4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Homework4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Homework4_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="Homework4_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Homework4_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework4</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Haina Qian </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="problem-1" class="level1">
+<h1>Problem 1</h1>
+<section id="a" class="level2">
+<h2 class="anchored" data-anchor-id="a">(a)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we need.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kableExtra'
+
+The following object is masked from 'package:dplyr':
+
+    group_rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to add columns of the names of origin and destination of airports.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>flights_named <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"faa"</span>, <span class="st">"name"</span>), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"origin"</span> <span class="ot">=</span> <span class="st">"faa"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"org_name"</span> <span class="ot">=</span> <span class="st">"name"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"faa"</span>, <span class="st">"name"</span>), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dest"</span> <span class="ot">=</span> <span class="st">"faa"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"dest_name"</span> <span class="ot">=</span> <span class="st">"name"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to select and generate what we want about departure delay.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>dep_delay_airport <span class="ot">&lt;-</span> flights_named <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(org_name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_dep_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> T), </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_dep_delay =</span> <span class="fu">median</span>(dep_delay, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(org_name, mean_dep_delay, median_dep_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_dep_delay))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nicely printed tibble.</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>dep_delay_airport <span class="sc">%&gt;%</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mean and Median Departure Delay per Airport"</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Mean and Median Departure Delay per Airport</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> org_name </th>
+   <th style="text-align:center;"> mean_dep_delay </th>
+   <th style="text-align:center;"> median_dep_delay </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> Newark Liberty Intl </td>
+   <td style="text-align:center;"> 15.10795 </td>
+   <td style="text-align:center;"> -1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> John F Kennedy Intl </td>
+   <td style="text-align:center;"> 12.11216 </td>
+   <td style="text-align:center;"> -1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> La Guardia </td>
+   <td style="text-align:center;"> 10.34688 </td>
+   <td style="text-align:center;"> -3 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to select and generate what we want about departure delay.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arr_delay_airport <span class="ot">&lt;-</span> flights_named <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest_name) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> T), </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dest_name, mean_arr_delay, median_arr_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_arr_delay))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nicely printed tibble.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>arr_delay_airport <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mean and Median Arrival Delay per Airport"</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Mean and Median Arrival Delay per Airport</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> dest_name </th>
+   <th style="text-align:center;"> mean_arr_delay </th>
+   <th style="text-align:center;"> median_arr_delay </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> Columbia Metropolitan </td>
+   <td style="text-align:center;"> 41.7641509 </td>
+   <td style="text-align:center;"> 28.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Tulsa Intl </td>
+   <td style="text-align:center;"> 33.6598639 </td>
+   <td style="text-align:center;"> 14.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Will Rogers World </td>
+   <td style="text-align:center;"> 30.6190476 </td>
+   <td style="text-align:center;"> 16.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Jackson Hole Airport </td>
+   <td style="text-align:center;"> 28.0952381 </td>
+   <td style="text-align:center;"> 15.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Mc Ghee Tyson </td>
+   <td style="text-align:center;"> 24.0692042 </td>
+   <td style="text-align:center;"> 2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Dane Co Rgnl Truax Fld </td>
+   <td style="text-align:center;"> 20.1960432 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Richmond Intl </td>
+   <td style="text-align:center;"> 20.1112532 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Akron Canton Regional Airport </td>
+   <td style="text-align:center;"> 19.6983373 </td>
+   <td style="text-align:center;"> 3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Des Moines Intl </td>
+   <td style="text-align:center;"> 19.0057361 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Gerald R Ford Intl </td>
+   <td style="text-align:center;"> 18.1895604 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Birmingham Intl </td>
+   <td style="text-align:center;"> 16.8773234 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Theodore Francis Green State </td>
+   <td style="text-align:center;"> 16.2346369 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Greenville-Spartanburg International </td>
+   <td style="text-align:center;"> 15.9354430 </td>
+   <td style="text-align:center;"> -0.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cincinnati Northern Kentucky Intl </td>
+   <td style="text-align:center;"> 15.3645638 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Savannah Hilton Head Intl </td>
+   <td style="text-align:center;"> 15.1295060 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Manchester Regional Airport </td>
+   <td style="text-align:center;"> 14.7875536 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Eppley Afld </td>
+   <td style="text-align:center;"> 14.6988984 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Yeager </td>
+   <td style="text-align:center;"> 14.6716418 </td>
+   <td style="text-align:center;"> -1.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Kansas City Intl </td>
+   <td style="text-align:center;"> 14.5140584 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Albany Intl </td>
+   <td style="text-align:center;"> 14.3971292 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> General Mitchell Intl </td>
+   <td style="text-align:center;"> 14.1672204 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Piedmont Triad </td>
+   <td style="text-align:center;"> 14.1126005 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Washington Dulles Intl </td>
+   <td style="text-align:center;"> 13.8642021 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cherry Capital Airport </td>
+   <td style="text-align:center;"> 12.9684211 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> James M Cox Dayton Intl </td>
+   <td style="text-align:center;"> 12.6804861 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Louisville International Airport </td>
+   <td style="text-align:center;"> 12.6693841 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Chicago Midway Intl </td>
+   <td style="text-align:center;"> 12.3642236 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Sacramento Intl </td>
+   <td style="text-align:center;"> 12.1099291 </td>
+   <td style="text-align:center;"> 4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Jacksonville Intl </td>
+   <td style="text-align:center;"> 11.8448342 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Nashville Intl </td>
+   <td style="text-align:center;"> 11.8124589 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Portland Intl Jetport </td>
+   <td style="text-align:center;"> 11.6604021 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Greater Rochester Intl </td>
+   <td style="text-align:center;"> 11.5606446 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Hartsfield Jackson Atlanta Intl </td>
+   <td style="text-align:center;"> 11.3001128 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Lambert St Louis Intl </td>
+   <td style="text-align:center;"> 11.0784645 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Norfolk Intl </td>
+   <td style="text-align:center;"> 10.9490934 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Baltimore Washington Intl </td>
+   <td style="text-align:center;"> 10.7267338 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Memphis Intl </td>
+   <td style="text-align:center;"> 10.6453144 </td>
+   <td style="text-align:center;"> -2.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Port Columbus Intl </td>
+   <td style="text-align:center;"> 10.6013229 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charleston Afb Intl </td>
+   <td style="text-align:center;"> 10.5929685 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Philadelphia Intl </td>
+   <td style="text-align:center;"> 10.1271901 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Raleigh Durham Intl </td>
+   <td style="text-align:center;"> 10.0523810 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Indianapolis Intl </td>
+   <td style="text-align:center;"> 9.9404341 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charlottesville-Albemarle </td>
+   <td style="text-align:center;"> 9.5000000 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cleveland Hopkins Intl </td>
+   <td style="text-align:center;"> 9.1816113 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ronald Reagan Washington Natl </td>
+   <td style="text-align:center;"> 9.0669520 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Burlington Intl </td>
+   <td style="text-align:center;"> 8.9509960 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Buffalo Niagara Intl </td>
+   <td style="text-align:center;"> 8.9459519 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Syracuse Hancock Intl </td>
+   <td style="text-align:center;"> 8.9039250 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Denver Intl </td>
+   <td style="text-align:center;"> 8.6065002 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Palm Beach Intl </td>
+   <td style="text-align:center;"> 8.5629721 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bob Hope </td>
+   <td style="text-align:center;"> 8.1756757 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Fort Lauderdale Hollywood Intl </td>
+   <td style="text-align:center;"> 8.0821215 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bangor Intl </td>
+   <td style="text-align:center;"> 8.0279330 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Asheville Regional Airport </td>
+   <td style="text-align:center;"> 8.0038314 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Pittsburgh Intl </td>
+   <td style="text-align:center;"> 7.6809905 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Gallatin Field </td>
+   <td style="text-align:center;"> 7.6000000 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> NW Arkansas Regional </td>
+   <td style="text-align:center;"> 7.4657258 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Tampa Intl </td>
+   <td style="text-align:center;"> 7.4085250 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charlotte Douglas Intl </td>
+   <td style="text-align:center;"> 7.3603189 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Minneapolis St Paul Intl </td>
+   <td style="text-align:center;"> 7.2701689 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> William P Hobby </td>
+   <td style="text-align:center;"> 7.1761882 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bradley Intl </td>
+   <td style="text-align:center;"> 7.0485437 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Antonio Intl </td>
+   <td style="text-align:center;"> 6.9453718 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> South Bend Rgnl </td>
+   <td style="text-align:center;"> 6.5000000 </td>
+   <td style="text-align:center;"> -3.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Louis Armstrong New Orleans Intl </td>
+   <td style="text-align:center;"> 6.4901750 </td>
+   <td style="text-align:center;"> -6.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Key West Intl </td>
+   <td style="text-align:center;"> 6.3529412 </td>
+   <td style="text-align:center;"> 7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Eagle Co Rgnl </td>
+   <td style="text-align:center;"> 6.3043478 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Austin Bergstrom Intl </td>
+   <td style="text-align:center;"> 6.0199088 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Chicago Ohare Intl </td>
+   <td style="text-align:center;"> 5.8766148 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Orlando Intl </td>
+   <td style="text-align:center;"> 5.4546431 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Detroit Metro Wayne Co </td>
+   <td style="text-align:center;"> 5.4299635 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Portland Intl </td>
+   <td style="text-align:center;"> 5.1415797 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Nantucket Mem </td>
+   <td style="text-align:center;"> 4.8522727 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Wilmington Intl </td>
+   <td style="text-align:center;"> 4.6355140 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Myrtle Beach Intl </td>
+   <td style="text-align:center;"> 4.6034483 </td>
+   <td style="text-align:center;"> -13.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Albuquerque International Sunport </td>
+   <td style="text-align:center;"> 4.3818898 </td>
+   <td style="text-align:center;"> -5.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> George Bush Intercontinental </td>
+   <td style="text-align:center;"> 4.2407904 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Norman Y Mineta San Jose Intl </td>
+   <td style="text-align:center;"> 3.4481707 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Southwest Florida Intl </td>
+   <td style="text-align:center;"> 3.2381496 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Diego Intl </td>
+   <td style="text-align:center;"> 3.1391657 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Sarasota Bradenton Intl </td>
+   <td style="text-align:center;"> 3.0824313 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Metropolitan Oakland Intl </td>
+   <td style="text-align:center;"> 3.0776699 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 3.0123391 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> General Edward Lawrence Logan Intl </td>
+   <td style="text-align:center;"> 2.9143922 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Francisco Intl </td>
+   <td style="text-align:center;"> 2.6728915 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Yampa Valley </td>
+   <td style="text-align:center;"> 2.1428571 </td>
+   <td style="text-align:center;"> 2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Phoenix Sky Harbor Intl </td>
+   <td style="text-align:center;"> 2.0970473 </td>
+   <td style="text-align:center;"> -6.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Montrose Regional Airport </td>
+   <td style="text-align:center;"> 1.7857143 </td>
+   <td style="text-align:center;"> -10.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Los Angeles Intl </td>
+   <td style="text-align:center;"> 0.5471109 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Dallas Fort Worth Intl </td>
+   <td style="text-align:center;"> 0.3221268 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Miami Intl </td>
+   <td style="text-align:center;"> 0.2990598 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Mc Carran Intl </td>
+   <td style="text-align:center;"> 0.2577285 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Salt Lake City Intl </td>
+   <td style="text-align:center;"> 0.1762546 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Long Beach </td>
+   <td style="text-align:center;"> -0.0620272 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Martha\\'s Vineyard </td>
+   <td style="text-align:center;"> -0.2857143 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Seattle Tacoma Intl </td>
+   <td style="text-align:center;"> -1.0990991 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Honolulu Intl </td>
+   <td style="text-align:center;"> -1.3651926 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> John Wayne Arpt Orange Co </td>
+   <td style="text-align:center;"> -7.8682266 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Palm Springs Intl </td>
+   <td style="text-align:center;"> -12.7222222 </td>
+   <td style="text-align:center;"> -13.5 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Clearly, I see a NA in the row, and we can easily print its abbreviation if needed. Here are the extra code of the demand I mentioned above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to select and generate what we want about departure delay.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>arr_delay_airport <span class="ot">&lt;-</span> flights_named <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## replace the NA in the dest_name with its abbreviation in dest column.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dest_name =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(dest_name), dest, dest_name)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest_name) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> T), </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dest_name =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(dest_name), dest, dest_name)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dest_name, mean_arr_delay, median_arr_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_arr_delay))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nicely printed tibble.</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>arr_delay_airport <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mean and Median Arrival Delay per Airport"</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Mean and Median Arrival Delay per Airport</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> dest_name </th>
+   <th style="text-align:center;"> mean_arr_delay </th>
+   <th style="text-align:center;"> median_arr_delay </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> Columbia Metropolitan </td>
+   <td style="text-align:center;"> 41.7641509 </td>
+   <td style="text-align:center;"> 28.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Tulsa Intl </td>
+   <td style="text-align:center;"> 33.6598639 </td>
+   <td style="text-align:center;"> 14.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Will Rogers World </td>
+   <td style="text-align:center;"> 30.6190476 </td>
+   <td style="text-align:center;"> 16.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Jackson Hole Airport </td>
+   <td style="text-align:center;"> 28.0952381 </td>
+   <td style="text-align:center;"> 15.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Mc Ghee Tyson </td>
+   <td style="text-align:center;"> 24.0692042 </td>
+   <td style="text-align:center;"> 2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Dane Co Rgnl Truax Fld </td>
+   <td style="text-align:center;"> 20.1960432 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Richmond Intl </td>
+   <td style="text-align:center;"> 20.1112532 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Akron Canton Regional Airport </td>
+   <td style="text-align:center;"> 19.6983373 </td>
+   <td style="text-align:center;"> 3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Des Moines Intl </td>
+   <td style="text-align:center;"> 19.0057361 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Gerald R Ford Intl </td>
+   <td style="text-align:center;"> 18.1895604 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Birmingham Intl </td>
+   <td style="text-align:center;"> 16.8773234 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Theodore Francis Green State </td>
+   <td style="text-align:center;"> 16.2346369 </td>
+   <td style="text-align:center;"> 1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Greenville-Spartanburg International </td>
+   <td style="text-align:center;"> 15.9354430 </td>
+   <td style="text-align:center;"> -0.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cincinnati Northern Kentucky Intl </td>
+   <td style="text-align:center;"> 15.3645638 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Savannah Hilton Head Intl </td>
+   <td style="text-align:center;"> 15.1295060 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Manchester Regional Airport </td>
+   <td style="text-align:center;"> 14.7875536 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Eppley Afld </td>
+   <td style="text-align:center;"> 14.6988984 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Yeager </td>
+   <td style="text-align:center;"> 14.6716418 </td>
+   <td style="text-align:center;"> -1.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Kansas City Intl </td>
+   <td style="text-align:center;"> 14.5140584 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Albany Intl </td>
+   <td style="text-align:center;"> 14.3971292 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> General Mitchell Intl </td>
+   <td style="text-align:center;"> 14.1672204 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Piedmont Triad </td>
+   <td style="text-align:center;"> 14.1126005 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Washington Dulles Intl </td>
+   <td style="text-align:center;"> 13.8642021 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cherry Capital Airport </td>
+   <td style="text-align:center;"> 12.9684211 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> James M Cox Dayton Intl </td>
+   <td style="text-align:center;"> 12.6804861 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Louisville International Airport </td>
+   <td style="text-align:center;"> 12.6693841 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Chicago Midway Intl </td>
+   <td style="text-align:center;"> 12.3642236 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Sacramento Intl </td>
+   <td style="text-align:center;"> 12.1099291 </td>
+   <td style="text-align:center;"> 4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Jacksonville Intl </td>
+   <td style="text-align:center;"> 11.8448342 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Nashville Intl </td>
+   <td style="text-align:center;"> 11.8124589 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Portland Intl Jetport </td>
+   <td style="text-align:center;"> 11.6604021 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Greater Rochester Intl </td>
+   <td style="text-align:center;"> 11.5606446 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Hartsfield Jackson Atlanta Intl </td>
+   <td style="text-align:center;"> 11.3001128 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Lambert St Louis Intl </td>
+   <td style="text-align:center;"> 11.0784645 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Norfolk Intl </td>
+   <td style="text-align:center;"> 10.9490934 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Baltimore Washington Intl </td>
+   <td style="text-align:center;"> 10.7267338 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Memphis Intl </td>
+   <td style="text-align:center;"> 10.6453144 </td>
+   <td style="text-align:center;"> -2.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Port Columbus Intl </td>
+   <td style="text-align:center;"> 10.6013229 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charleston Afb Intl </td>
+   <td style="text-align:center;"> 10.5929685 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Philadelphia Intl </td>
+   <td style="text-align:center;"> 10.1271901 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Raleigh Durham Intl </td>
+   <td style="text-align:center;"> 10.0523810 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Indianapolis Intl </td>
+   <td style="text-align:center;"> 9.9404341 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charlottesville-Albemarle </td>
+   <td style="text-align:center;"> 9.5000000 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Cleveland Hopkins Intl </td>
+   <td style="text-align:center;"> 9.1816113 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ronald Reagan Washington Natl </td>
+   <td style="text-align:center;"> 9.0669520 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Burlington Intl </td>
+   <td style="text-align:center;"> 8.9509960 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Buffalo Niagara Intl </td>
+   <td style="text-align:center;"> 8.9459519 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Syracuse Hancock Intl </td>
+   <td style="text-align:center;"> 8.9039250 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Denver Intl </td>
+   <td style="text-align:center;"> 8.6065002 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Palm Beach Intl </td>
+   <td style="text-align:center;"> 8.5629721 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> BQN </td>
+   <td style="text-align:center;"> 8.2454955 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bob Hope </td>
+   <td style="text-align:center;"> 8.1756757 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Fort Lauderdale Hollywood Intl </td>
+   <td style="text-align:center;"> 8.0821215 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bangor Intl </td>
+   <td style="text-align:center;"> 8.0279330 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Asheville Regional Airport </td>
+   <td style="text-align:center;"> 8.0038314 </td>
+   <td style="text-align:center;"> -1.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> PSE </td>
+   <td style="text-align:center;"> 7.8715084 </td>
+   <td style="text-align:center;"> 0.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Pittsburgh Intl </td>
+   <td style="text-align:center;"> 7.6809905 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Gallatin Field </td>
+   <td style="text-align:center;"> 7.6000000 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> NW Arkansas Regional </td>
+   <td style="text-align:center;"> 7.4657258 </td>
+   <td style="text-align:center;"> -2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Tampa Intl </td>
+   <td style="text-align:center;"> 7.4085250 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Charlotte Douglas Intl </td>
+   <td style="text-align:center;"> 7.3603189 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Minneapolis St Paul Intl </td>
+   <td style="text-align:center;"> 7.2701689 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> William P Hobby </td>
+   <td style="text-align:center;"> 7.1761882 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bradley Intl </td>
+   <td style="text-align:center;"> 7.0485437 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Antonio Intl </td>
+   <td style="text-align:center;"> 6.9453718 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> South Bend Rgnl </td>
+   <td style="text-align:center;"> 6.5000000 </td>
+   <td style="text-align:center;"> -3.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Louis Armstrong New Orleans Intl </td>
+   <td style="text-align:center;"> 6.4901750 </td>
+   <td style="text-align:center;"> -6.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Key West Intl </td>
+   <td style="text-align:center;"> 6.3529412 </td>
+   <td style="text-align:center;"> 7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Eagle Co Rgnl </td>
+   <td style="text-align:center;"> 6.3043478 </td>
+   <td style="text-align:center;"> -4.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Austin Bergstrom Intl </td>
+   <td style="text-align:center;"> 6.0199088 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Chicago Ohare Intl </td>
+   <td style="text-align:center;"> 5.8766148 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Orlando Intl </td>
+   <td style="text-align:center;"> 5.4546431 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Detroit Metro Wayne Co </td>
+   <td style="text-align:center;"> 5.4299635 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Portland Intl </td>
+   <td style="text-align:center;"> 5.1415797 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Nantucket Mem </td>
+   <td style="text-align:center;"> 4.8522727 </td>
+   <td style="text-align:center;"> -3.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Wilmington Intl </td>
+   <td style="text-align:center;"> 4.6355140 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Myrtle Beach Intl </td>
+   <td style="text-align:center;"> 4.6034483 </td>
+   <td style="text-align:center;"> -13.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Albuquerque International Sunport </td>
+   <td style="text-align:center;"> 4.3818898 </td>
+   <td style="text-align:center;"> -5.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> George Bush Intercontinental </td>
+   <td style="text-align:center;"> 4.2407904 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Norman Y Mineta San Jose Intl </td>
+   <td style="text-align:center;"> 3.4481707 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Southwest Florida Intl </td>
+   <td style="text-align:center;"> 3.2381496 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Diego Intl </td>
+   <td style="text-align:center;"> 3.1391657 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Sarasota Bradenton Intl </td>
+   <td style="text-align:center;"> 3.0824313 </td>
+   <td style="text-align:center;"> -5.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Metropolitan Oakland Intl </td>
+   <td style="text-align:center;"> 3.0776699 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> General Edward Lawrence Logan Intl </td>
+   <td style="text-align:center;"> 2.9143922 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> San Francisco Intl </td>
+   <td style="text-align:center;"> 2.6728915 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> SJU </td>
+   <td style="text-align:center;"> 2.5205266 </td>
+   <td style="text-align:center;"> -6.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Yampa Valley </td>
+   <td style="text-align:center;"> 2.1428571 </td>
+   <td style="text-align:center;"> 2.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Phoenix Sky Harbor Intl </td>
+   <td style="text-align:center;"> 2.0970473 </td>
+   <td style="text-align:center;"> -6.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Montrose Regional Airport </td>
+   <td style="text-align:center;"> 1.7857143 </td>
+   <td style="text-align:center;"> -10.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Los Angeles Intl </td>
+   <td style="text-align:center;"> 0.5471109 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Dallas Fort Worth Intl </td>
+   <td style="text-align:center;"> 0.3221268 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Miami Intl </td>
+   <td style="text-align:center;"> 0.2990598 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Mc Carran Intl </td>
+   <td style="text-align:center;"> 0.2577285 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Salt Lake City Intl </td>
+   <td style="text-align:center;"> 0.1762546 </td>
+   <td style="text-align:center;"> -8.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Long Beach </td>
+   <td style="text-align:center;"> -0.0620272 </td>
+   <td style="text-align:center;"> -10.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Martha\\'s Vineyard </td>
+   <td style="text-align:center;"> -0.2857143 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Seattle Tacoma Intl </td>
+   <td style="text-align:center;"> -1.0990991 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Honolulu Intl </td>
+   <td style="text-align:center;"> -1.3651926 </td>
+   <td style="text-align:center;"> -7.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> STT </td>
+   <td style="text-align:center;"> -3.8359073 </td>
+   <td style="text-align:center;"> -9.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> John Wayne Arpt Orange Co </td>
+   <td style="text-align:center;"> -7.8682266 </td>
+   <td style="text-align:center;"> -11.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Palm Springs Intl </td>
+   <td style="text-align:center;"> -12.7222222 </td>
+   <td style="text-align:center;"> -13.5 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="b" class="level2">
+<h2 class="anchored" data-anchor-id="b">(b)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we need.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to add a column of model from planes to flights.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>flights_with_model <span class="ot">&lt;-</span> flights<span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tailnum"</span> <span class="ot">=</span> <span class="st">"tailnum"</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Use piping to calculate and select the flight times of the fastest plane.</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>fastest_plane <span class="ot">&lt;-</span> flights_with_model <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">flight_times =</span> <span class="fu">n</span>(),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">avg_speed =</span> <span class="fu">mean</span>(distance <span class="sc">/</span> air_time <span class="sc">*</span> <span class="dv">60</span>, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_speed)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, avg_speed, flight_times)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nicely printed tibble.</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>fastest_plane <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"average speed(MPH)"</span> <span class="ot">=</span> <span class="st">"avg_speed"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>         <span class="st">"number of flights"</span> <span class="ot">=</span> <span class="st">"flight_times"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"The flight times of the fastest plane"</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>The flight times of the fastest plane</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> model </th>
+   <th style="text-align:center;"> average speed(MPH) </th>
+   <th style="text-align:center;"> number of flights </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 777-222 </td>
+   <td style="text-align:center;"> 482.6254 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="problem-2" class="level1">
+<h1>Problem 2</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we need.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>nnmaps <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/Umich_MAS/semester1/STATS_506/R_work/20241031_hainaq/chicago-nmmaps.csv"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' This is a function to calculate the average temperature for a given month.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param month Month, either a numeric 1-12 or a string.</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param year A numeric year.</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param data The data set to obtain data from.</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param celsius Logically indicating whether the results should be in Celsius.   Default FALSE.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param average_fn A function with which to compute the mean. Default is mean.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return A numeric vector of length 1.</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>get_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(month, year, data, <span class="at">celsius =</span> F, <span class="at">average_fn =</span> mean){</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Deal with the situations of some invalid inputs of month.</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.character</span>(month)){</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    month <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">tolower</span>(<span class="fu">substr</span>(month, <span class="dv">1</span>, <span class="dv">3</span>)), <span class="fu">tolower</span>(month.abb))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(month)){</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">"ERROR: Invalid month name."</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(month)){</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"ERROR: Invalid type of month."</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span> <span class="cf">if</span> (month <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> month <span class="sc">&gt;</span> <span class="dv">12</span>){</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"ERROR: Invalid month number."</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Deal with the situations of some invalid inputs of year.</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(year)){</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (year <span class="sc">&gt;</span> <span class="dv">2024</span>){</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">"ERROR: Impossible year."</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"ERROR: Invalid type of year."</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Deal with the situation of some invalid input of data.</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.data.frame</span>(data)){</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"ERROR: Invalid data type."</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter the data of the given month and year.</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(month_numeric <span class="sc">==</span> <span class="sc">!!</span>month, year <span class="sc">==</span> <span class="sc">!!</span>year)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check the remains after filtering.</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"ERROR: No data available."</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the average temperature of the given month and year.</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check whether average_fn can support 'na.rm' argument.</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="st">"na.rm"</span> <span class="sc">%in%</span> <span class="fu">names</span>(<span class="fu">formals</span>(average_fn))) {</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">avg_temp =</span> <span class="fu">average_fn</span>(temp, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(avg_temp)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">avg_temp =</span> <span class="fu">average_fn</span>(temp)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(avg_temp)</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Handles conversion between Fahrenheit and Celsius.</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (celsius){</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> (result <span class="sc">-</span> <span class="dv">32</span>)<span class="sc">/</span><span class="fl">1.8</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return the result.</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"Apr"</span>, <span class="dv">1999</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"Apr"</span>, <span class="dv">1999</span>, <span class="at">data =</span> nnmaps, <span class="at">celsius =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.888889</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">10</span>, <span class="dv">1998</span>, <span class="at">data =</span> nnmaps, <span class="at">average_fn =</span> median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">13</span>, <span class="dv">1998</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ERROR: Invalid month number."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">2</span>, <span class="dv">2005</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ERROR: No data available."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"November"</span>, <span class="dv">1999</span>, <span class="at">data =</span>nnmaps, <span class="at">celsius =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">average_fn =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">%&gt;%</span> sort <span class="ot">-&gt;</span> x</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>           x[<span class="dv">2</span><span class="sc">:</span>(<span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">1</span>)] <span class="sc">%&gt;%</span> mean <span class="sc">%&gt;%</span> return</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>         })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.301587</code></pre>
+</div>
+</div>
+</section>
+<section id="problem-3" class="level1">
+<h1>Problem 3</h1>
+<section id="a-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-1">(a)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we want.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the csv.</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/Umich_MAS/semester1/STATS_506/R_work/20241031_hainaq/df_for_ml_improved_new_market.csv"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the range of the years in the dataframe.</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>max_year <span class="ot">&lt;-</span> <span class="fu">max</span>(df<span class="sc">$</span>year)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>min_year <span class="ot">&lt;-</span> <span class="fu">min</span>(df<span class="sc">$</span>year)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The range of the year is between"</span>, min_year, <span class="st">"and"</span>, max_year, <span class="st">".</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The range of the year is between 1997 and 2012 .</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the price in USD of each year in average.</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_price_usd =</span> <span class="fu">mean</span>(price_usd, <span class="at">na.rm =</span> T))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nice plot.</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> avg_price_usd)) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#397FC7"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#040676"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span>  </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Art Sales Price Over Time"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Sales Price (USD)"</span>, </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Sources: SpringerNature"</span>) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(min_year, max_year, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span>  </span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>),  </span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),  </span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#000000"</span>),</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_price_usd, <span class="dv">2</span>)), </span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">1.8</span>, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>, <span class="at">color =</span> <span class="st">"#6F6F6F"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Over time the average prices of the arts in USD annually changed obviously. The overall price trend was upward, but there was a sudden price drop in 2009.</p>
+</section>
+<section id="b-1" class="level2">
+<h2 class="anchored" data-anchor-id="b-1">(b)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we want.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the csv.</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/Umich_MAS/semester1/STATS_506/R_work/20241031_hainaq/df_for_ml_improved_new_market.csv"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the amount of a certain genre annually.</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Photography =</span> <span class="fu">sum</span>(Genre___Photography <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Print =</span> <span class="fu">sum</span>(Genre___Print <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sculpture =</span> <span class="fu">sum</span>(Genre___Sculpture <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Painting =</span> <span class="fu">sum</span>(Genre___Painting <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Others =</span> <span class="fu">sum</span>(Genre___Others <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pivot_longer to better classify the genres of the arts annually.</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>genres_of_year <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Photography, Print, Sculpture, Painting, Others),</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Genre"</span>, <span class="at">values_to =</span> <span class="st">"Counts"</span>)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(genres_of_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+   year Genre       Counts
+  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;
+1  1997 Photography      3
+2  1997 Print            0
+3  1997 Sculpture        5
+4  1997 Painting         8
+5  1997 Others           8
+6  1998 Photography      3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nice plot.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(genres_of_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> Counts, <span class="at">fill =</span> Genre)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the Genres of the Arts Every Year"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Counts of the Arts"</span>, </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Sources: SpringerNature"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(min_year, max_year, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Photography"</span> <span class="ot">=</span> <span class="st">"#7C9D97"</span>, <span class="st">"Print"</span> <span class="ot">=</span> <span class="st">"#9CB0C3"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Sculpture"</span> <span class="ot">=</span> <span class="st">"#BD9AAD"</span>, <span class="st">"Painting"</span> <span class="ot">=</span> <span class="st">"#9193B4"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Others"</span> <span class="ot">=</span> <span class="st">"#2F2D54"</span>),</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Photography"</span>, <span class="st">"Print"</span>, <span class="st">"Sculpture"</span>, <span class="st">"Painting"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Others"</span>)) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span>  </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>),  </span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),  </span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#000000"</span>),</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),    </span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As the total amount of each genre of the arts generally increases over time, we can find out that in the last few years of the graph, the overall distribution has basically not changed while in the first few years we hardly ever have genre Photography and Print of the arts.</p>
+</section>
+<section id="c" class="level2">
+<h2 class="anchored" data-anchor-id="c">(c)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library the packages we want.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the csv.</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/Umich_MAS/semester1/STATS_506/R_work/20241031_hainaq/df_for_ml_improved_new_market.csv"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average price of each genre in each year.</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, price_usd, Genre___Photography, Genre___Print, </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>         Genre___Sculpture, Genre___Painting, Genre___Others) <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Photography =</span> Genre___Photography, </span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Print =</span> Genre___Print, </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">Sculpture =</span> Genre___Sculpture, </span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">Painting =</span> Genre___Painting, </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">Others =</span> Genre___Others) <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(year, price_usd), </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Genre"</span>, <span class="at">values_to =</span> <span class="st">"whether_not"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(whether_not <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, Genre) <span class="sc">%&gt;%</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_price =</span> <span class="fu">mean</span>(price_usd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall average price in each year.</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_price =</span> <span class="fu">mean</span>(price_usd, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Genre =</span> <span class="st">"Overall"</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the overall average price with each genre's average price.</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>df_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df3, df4)</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nice plot.</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_combined, </span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> avg_price, <span class="at">color =</span> Genre, <span class="at">group =</span> Genre)) <span class="sc">+</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  </span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span>  </span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Art Sales Price Over Time of Each Genre"</span>,</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Sales Price (USD)"</span>, </span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Sources: SpringerNature"</span>) <span class="sc">+</span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(min_year, max_year, <span class="dv">1</span>)) <span class="sc">+</span>  </span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Overall"</span> <span class="ot">=</span> <span class="st">"#397FC7"</span>, </span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Photography"</span> <span class="ot">=</span> <span class="st">"#7C9D97"</span>, </span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Print"</span> <span class="ot">=</span> <span class="st">"#9CB0C3"</span>, </span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Sculpture"</span> <span class="ot">=</span> <span class="st">"#BD9AAD"</span>, </span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Painting"</span> <span class="ot">=</span> <span class="st">"#9193B4"</span>, </span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Others"</span> <span class="ot">=</span> <span class="st">"#2F2D54"</span>),</span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Overall"</span>, <span class="st">"Photography"</span>,</span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Print"</span>, <span class="st">"Sculpture"</span>, <span class="st">"Painting"</span>, <span class="st">"Others"</span>)) <span class="sc">+</span>  </span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span>  </span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>),  </span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),  </span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#000000"</span>),</span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),    </span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework4_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Generally speaking, the year-on-year changes in the price of all types of art works are quite similar, except that the price of photos of this type of art had a sudden jump in 2006, and has been significantly higher than other types since then. The price of printed art fell significantly in 2005 and then rose significantly in 2007. In the remaining years, except for the photo category, the prices for the other four categories are very similar, especially in the last few years.</p>
+</section>
+</section>
+<section id="the-github-link" class="level1">
+<h1>The Github Link</h1>
+<p>The link of this homework is https://github.com/Anonym027/Stats506.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
