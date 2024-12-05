@@ -1,0 +1,286 @@
+---
+title: "Homework6"
+execute: 
+  error: true
+  warning: false
+author: "Haina Qian"
+format: 
+  html:
+    embed-resources: true
+editor: visual
+---
+
+# Problem 1
+
+```{r}
+# Load the packages we need.
+library(DBI)          
+library(tidyverse)    
+library(rsample)      
+library(parallel)     
+library(future)       
+library(furrr)        
+library(microbenchmark) 
+
+# Connect to the Lahman SQLite database.
+lahman <- dbConnect(RSQLite::SQLite(), "lahman_1871-2022.sqlite")
+
+# Query the "Fielding" table and store it as a dataframe.
+df <- dbGetQuery(lahman, "select * from fielding")
+
+# Add a new column "RF" (Range Factor) to the dataframe.
+new.df <- df %>% mutate(RF = 3 * (PO + A) / InnOuts)
+
+# Filter the records where "InnOuts" is not missing and greater than zero, and calculate "RF".
+new.df.filter <- df %>%
+  filter(!is.na(InnOuts)) %>%
+  filter(InnOuts > 0) %>%
+  mutate(RF = 3 * (PO + A) / InnOuts)
+
+# Calculate the average "RF" for each team using SQL query.
+avg.RF <- dbGetQuery(lahman, 
+"select teamID, avg(3*(PO+A)/NULLIF(InnOuts, 0)) as avg_rf
+ from fielding
+ where InnOuts > 0
+ group by teamID
+ order by avg_rf desc")
+
+#' Stratified Bootstrap Resampling.
+#'
+#' Performs stratified bootstrap resampling of a dataset.
+#' 
+#' @param data A dataframe to resample from.
+#' @param strata A string indicating the column name for stratification.
+#' @param N An integer specifying the number of bootstrap samples.
+#' @return A list of dataframes with resampled means for each stratum.
+stratified_bootstrap <- function(data, strata = "teamID", N = 1000) {
+  replicate(
+    N, 
+    data %>%
+      group_by(across(all_of(strata))) %>% 
+      sample_n(size = n(), replace = TRUE) %>%
+      summarise(mean_RF = mean(RF, na.rm = TRUE), .groups = "drop"),
+    simplify = FALSE
+  )
+}
+
+# Perform non-parallel stratified bootstrap.
+set.seed(506)
+sample1 <- stratified_bootstrap(new.df.filter, strata = "teamID", N = 1000)
+
+# Combine the bootstrap samples into a single dataframe.
+sample1.df <- bind_rows(sample1)
+
+# Calculate standard deviation of resampled means for each team.
+sample1.se <- sample1.df %>%
+  group_by(teamID) %>%
+  summarise(SD = sd(mean_RF, na.rm = TRUE), .groups = "drop")
+
+# Display the first few rows of the standard deviation results.
+head(sample1.se)
+
+#' Parallel Stratified Bootstrap Resampling.
+#'
+#' Performs stratified bootstrap resampling using parallel computation.
+#' 
+#' @param data A dataframe to resample from.
+#' @param strata A string indicating the column name for stratification.
+#' @param N An integer specifying the number of bootstrap samples.
+#' @param n_cores An integer specifying the number of cores to use.
+#' @return A dataframe of resampled means for each stratum.
+parallel_stratified_bootstrap <- function(data, strata, N, n_cores = detectCores()) {
+  # Create a cluster with half the available cores.
+  cluster <- makeCluster(n_cores %/% 2)
+  on.exit(stopCluster(cluster)) # Ensure cluster stops after execution.
+  
+  # Load necessary libraries on each cluster node.
+  clusterEvalQ(cluster, library(tidyverse))
+  
+  # Perform bootstrap resampling in parallel.
+  boot_samples <- parLapply(
+    cluster, 
+    X = 1:N, 
+    fun = function(i, data, strata) {
+      data %>%
+        group_by(across(all_of(strata))) %>%
+        sample_n(size = n(), replace = TRUE) %>%
+        summarise(mean_RF = mean(RF, na.rm = TRUE), .groups = "drop")
+    }, 
+    data = data, 
+    strata = strata
+  )
+  
+  # Combine results and return as a dataframe.
+  return(bind_rows(boot_samples))
+}
+
+# Perform parallel stratified bootstrap.
+set.seed(506)
+sample2 <- parallel_stratified_bootstrap(data = new.df.filter, strata = "teamID", N = 1000)
+
+# Calculate standard deviation of resampled means for each team.
+sample2.se <- sample2 %>%
+  group_by(teamID) %>%
+  summarise(SD = sd(mean_RF, na.rm = TRUE), .groups = "drop")
+
+# Display the first few rows of the standard deviation results.
+head(sample2.se)
+
+#' Future-Based Stratified Bootstrap Resampling.
+#'
+#' Performs stratified bootstrap resampling using the future package for parallelization.
+#' 
+#' @param data A dataframe to resample from.
+#' @param strata A string indicating the column name for stratification.
+#' @param N An integer specifying the number of bootstrap samples.
+#' @return A dataframe of resampled means for each stratum.
+future_stratified_bootstrap <- function(data, strata, N) {
+  # Set up parallel plan using available cores.
+  plan(multisession, workers = availableCores() - 1)
+  
+  # Perform bootstrap resampling using future_map_dfr.
+  results <- future_map_dfr(
+    seq_len(N),
+    ~ data %>%
+      group_by(across(all_of(strata))) %>%
+      sample_n(size = n(), replace = TRUE) %>%
+      summarise(mean_RF = mean(RF, na.rm = TRUE), .groups = "drop"),
+    .options = furrr_options(seed = TRUE)
+  )
+  
+  return(results)
+}
+
+# Perform future-based stratified bootstrap.
+set.seed(506)
+sample3 <- future_stratified_bootstrap(data = new.df.filter, strata = "teamID", N = 1000)
+
+# Calculate standard deviation of resampled means for each team.
+sample3.se <- sample3 %>%
+  group_by(teamID) %>%
+  summarise(SD = sd(mean_RF, na.rm = TRUE), .groups = "drop")
+
+# Display the first few rows of the standard deviation results.
+head(sample3.se)
+
+# Compare the top 10 teams from the three methods.
+
+#' Extract Top Teams by Average RF.
+#'
+#' This function calculates the average value of a specified column, ranks the groups, and extracts the top "n" groups based on the average value.
+#'
+#' @param data A dataframe containing the data to analyze.
+#' @param group_col A string specifying the column name to group by.
+#' @param value_col A column name (unquoted) whose mean will be calculated for ranking.
+#' @param top_n An integer specifying the number of top groups to extract. Default is 10.
+#'
+#' @return A vector of group IDs for the top "n" groups based on the average value.
+#' @examples
+#' get_top_teams(sample1.df, "teamID", mean_RF, top_n = 10)
+get_top_teams <- function(data, group_col, value_col, top_n = 10) {
+  data %>%
+    group_by(across(all_of(group_col))) %>%
+    summarize(avg_RF = mean({{ value_col }}, na.rm = TRUE), .groups = "drop") %>%
+    slice_max(avg_RF, n = top_n) %>%
+    pull(!!sym(group_col))
+}
+
+#' Calculate Statistics for Specific Teams.
+#'
+#' This function calculates the mean and standard deviation of a specified column
+#' for a subset of groups in a dataset.
+#'
+#' @param data A dataframe containing the data to analyze.
+#' @param team_ids A vector of group IDs to filter the data.
+#' @param group_col A string specifying the column name to group by.
+#' @param value_col A column name (unquoted) whose statistics will be calculated.
+#'
+#' @return A dataframe containing the mean and standard deviation of the specified column.
+#' for each group in the filtered subset.
+#' @examples
+#' calculate_stats(sample1.df, top10_sample1_team, "teamID", mean_RF)
+calculate_stats <- function(data, team_ids, group_col, value_col) {
+  data %>%
+    filter(!!sym(group_col) %in% team_ids) %>%
+    group_by(across(all_of(group_col))) %>%
+    summarize(
+      avg_RF = mean({{ value_col }}, na.rm = TRUE),
+      sd_RF = sd({{ value_col }}, na.rm = TRUE),
+      .groups = "drop"
+    )
+}
+
+# Extract top 10 teams for each method.
+top10_sample1_team <- get_top_teams(sample1.df, "teamID", mean_RF)
+top10_sample2_team <- get_top_teams(sample2, "teamID", mean_RF)
+top10_sample3_team <- get_top_teams(sample3, "teamID", mean_RF)
+
+# Check if top 10 teams are identical across methods.
+all_equal <- setequal(top10_sample1_team, top10_sample2_team) &&
+             setequal(top10_sample2_team, top10_sample3_team)
+cat("TOP 10 teams from 3 approaches are the same:", all_equal)
+
+# Calculate detailed statistics for the top 10 teams from each method.
+top10_sample1_val <- calculate_stats(sample1.df, top10_sample1_team, "teamID", mean_RF) %>%
+  rename(avg_RF_base = avg_RF, sd_RF_base = sd_RF) %>%
+  arrange(desc(avg_RF_base))
+
+top10_sample2_val <- calculate_stats(sample2, top10_sample2_team, "teamID", mean_RF) %>%
+  rename(avg_RF_parallel = avg_RF, sd_RF_parallel = sd_RF)
+
+top10_sample3_val <- calculate_stats(sample3, top10_sample3_team, "teamID", mean_RF) %>%
+  rename(avg_RF_future = avg_RF, sd_RF_future = sd_RF)
+
+# Combine the statistics from all methods into a single tibble.
+final_tibble <- list(top10_sample1_val, top10_sample2_val, top10_sample3_val) %>%
+  reduce(inner_join, by = "teamID")
+
+# Display the final tibble.
+#final_tibble
+
+library(DT)
+
+# Render interactive table
+datatable(
+  final_tibble,
+  caption = "Detailed Statistics for Top 10 Teams",
+  options = list(pageLength = 10, scrollX = TRUE)
+)
+
+
+#' Measure Execution Time.
+#'
+#' Measures the execution time of a function call and returns it in a formated dataframe.
+#' 
+#' @param approach_name A string specifying the approach being measured.
+#' @param function_call The function call to be measured.
+#' @return A dataframe with execution time details.
+measure_execution_time <- function(approach_name, function_call) {
+  time_result <- system.time(function_call)
+  data.frame(
+    Approach = approach_name,
+    User = time_result["user.self"],
+    System = time_result["sys.self"],
+    Elapsed = time_result["elapsed"],
+    row.names = NULL
+  )
+}
+
+# Measure and compare execution times of three methods.
+set.seed(506)
+time_consumption <- bind_rows(
+  measure_execution_time("Non-parallel", stratified_bootstrap(new.df.filter, strata = "teamID", N = 1000)),
+  measure_execution_time("Parallel", parallel_stratified_bootstrap(data = new.df.filter, strata = "teamID", N = 1000)),
+  measure_execution_time("Future", future_stratified_bootstrap(data = new.df.filter, strata = "teamID", N = 1000))
+)
+
+# Display execution time comparison.
+time_consumption
+
+```
+
+The results demonstrate that the **parallel approach** is the most efficient, significantly outperforming the **non-parallel approach** by leveraging multiple CPU cores. The **future-based approach** also shows substantial improvement over the non-parallel method but is slightly slower than the parallel approach, likely due to additional worker management overhead. To draw a conclusion, for this specific task, the **Parallel approach** is the optimal choice in terms of speed.
+
+# The Github Link
+
+The link of this homework is https://github.com/Anonym027/Stats506.
